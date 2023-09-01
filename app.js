@@ -17,7 +17,7 @@ var myMovies = [
 	{
 		title: "Focus",
 		published: 2016,
-		genres: ["pop"],
+		genres: ["Pop"],
 		artist: ["Ariana Grande"],
         album: ["Dangerous Woman"]
 	}
@@ -70,7 +70,41 @@ var myMovies = [
 		genres: ["Electronic dance music, Dance-pop, House music, Electro, Seasonal"],
 		artist: ["Ariana Grande"],
         album: ["Dangerous Woman"]
-	}
+	},
+
+    {
+		title: "Side to Side",
+		published: 2016,
+		genres: ["Reggae fusion, Pop"],
+        artist: ["Ariana Grande"],
+        album: ["Dangerous Woman"]
+	},
+    
+    {
+		title: "Stuck with you",
+		published: 2020,
+		genres: ["Pop"],
+        artist: ["Ariana Grande"],
+        album: ["None"]
+	},
+
+    {
+		title: "Breathin",
+		published: 2018,
+		genres: ["Pop"],
+        artist: ["Ariana Grande"],
+        album: ["Sweetner"]
+	},
+
+    {
+		title: "Everyday",
+		published: 2016,
+		genres: ["Pop"],
+        artist: ["Ariana Grande"],
+        album: ["Dangerous Woman"]
+	},
+    
+    
 ]
 
 const FORM = document.querySelector(".searchForm")
@@ -84,13 +118,13 @@ function submitHandler(event) {
 		return searchTitle(event.target.search.value, element.title)
 			|| compare(element.published, event.target.search.value)
 			|| findInArray(element.genres, event.target.search.value)
-			|| findInArray(element.actors, event.target.search.value)
+			|| findInArray(element.artist, event.target.search.value)
             || findInArray(element.album, event.target.search.value)
 	})
 
 	//console.log(RESULTS)
 	const LIST = RESULTS.map(createList)
-	const RESULT_LIST = document.querySelector(".movieResults")
+	const RESULT_LIST = document.querySelector(".search__submit , search__button")
 
 	RESULT_LIST.innerHTML = ""
 	LIST.forEach(item => RESULT_LIST.appendChild(item))
@@ -108,6 +142,7 @@ function searchTitle(keyword, title) {
 const compare = (a, b) => a == b
 
 function findInArray(haystack, needle) {
+    console.log (haystack)
 	return haystack.find(function(item) {
 		return item.toLowerCase().includes(needle.toLowerCase())
 	})
@@ -129,7 +164,7 @@ function createList(movie) {
 	const movieActors = LI.querySelector(".movieActors")
 
 	movie.genres.forEach(genre => movieGenres.innerHTML += `<li>${genre}</li>`)
-	movie.actors.forEach(actor => movieActors.innerHTML += `<li>${actor}</li>`)
+	movie.artist.forEach(artist => movieActors.innerHTML += `<li>${artist}</li>`)
 	
 	return LI
 }
